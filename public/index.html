@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+  </head>
+  <body>
+    <div>
+      <button id="test_btn">Test</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var testBtn = document.getElementById('test_btn');
+    testBtn.addEventListener('click', () => {
+      var req = new XMLHttpRequest();
+      req.open('POST', 'http://localhost:5429/signup', true);
+      // req.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:5429');
+
+      req.send(JSON.stringify({
+        id: 'geni429',
+        pw: 'password',
+        name: '정근철'
+      }));
+
+      console.log(req.response);
+    });
+
+  </script>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "6-o-clock",
+  "version": "1.0.0",
+  "description": "Random mailing service",
+  "main": "index.js",
+  "repository": "https://github.com/K-ing-fisher/6-o-clock-back",
+  "author": "geni429 <geni429@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./server/server.js"
+  },
+  "dependencies": {
+    "hapi": "^17.3.1",
+    "hapi-cors": "^1.0.1",
+    "hapi-cors-headers": "^1.0.3",
+    "hapi-pino": "^4.0.4",
+    "inert": "^5.1.0",
+    "mongoose": "^5.0.16"
+  }
+}
