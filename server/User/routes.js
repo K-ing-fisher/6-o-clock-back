@@ -17,10 +17,27 @@ const signUp = async function(request, h) {
   }
 }
 
+const signIn = async function(request, h) {
+  User.findOne({ id: request.payload.id })
+    .then(result => {
+      console.log(reslut);
+      return h.response('User sign in success').code(201);
+    })
+    .catch(err => {
+      console.log(err);
+      return h.response('User sign in fail').code(400);
+    })
+}
+
 module.exports = [
   {
     method: 'POST',
     path: '/signup',
     handler: signUp
+  },
+  {
+    method: 'POST',
+    path: '/signin',
+    handler: signIn
   }
 ]
