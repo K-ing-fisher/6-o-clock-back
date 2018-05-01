@@ -12,16 +12,18 @@
     var testBtn = document.getElementById('test_btn');
     testBtn.addEventListener('click', () => {
       var req = new XMLHttpRequest();
-      req.open('POST', 'http://localhost:5429/signup', true);
-      // req.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:5429');
-
+      req.onreadystatechange = function() {
+        if (req.readyState === XMLHttpRequest.DONE) {
+          console.log(req.response);
+        }
+      }
+      req.open('POST', '/signup', true);
+      req.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
       req.send(JSON.stringify({
         id: 'geni429',
         pw: 'password',
         name: '정근철'
       }));
-
-      console.log(req.response);
     });
 
   </script>
