@@ -7,6 +7,9 @@
     <div>
       <button id="sign_up_btn">Sign up</button>
       <button id="sign_in_btn">Sign in</button>
+      <input placeholder="id" id="sign_in_id"/>
+      <input placeholder="pw" id="sign_in_pw"/>
+      <button id="session_check_btn">session</button>
     </div>
   </body>
   <script type="text/javascript">
@@ -33,14 +36,29 @@
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           console.log(xhr.response);
+          console.log(xhr.getResponseHeader('Set-Cookie'));
         }
       }
       xhr.open('POST', '/signin', true);
+      xhr.withCredentials = true;
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xhr.setRequestHeader("Access-Control-Allow-Headers", "*");
+      xhr.setRequestHeader("Access-Control-Expose-Headers", "*");
+      xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");
       xhr.send(JSON.stringify({
-        id: 'geni429',
-        pw: 'password'
+        id: document.getElementById('sign_in_id').value,
+        pw: document.getElementById('sign_in_pw').value
       }));
     })
+
+    var sessionCheckBtn = document.getElementById('session_check_btn');
+    sessionCheckBtn.addEventListener('click', () => {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/session', true);
+      xhr.withCredentials = true;
+      // xhr.setRequestHeader('Cookie', )
+      xhr.send(null);
+    });
   </script>
 </html>
