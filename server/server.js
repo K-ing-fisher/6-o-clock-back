@@ -15,12 +15,12 @@ const user = require('./User/routes');
 //data base
 const db = mongoose.connection;
 
-db.on('error', console.error);
-db.once('open', () => {
-  console.log('Connected mongodb server');
-})
+// db.on('error', console.error);
+// db.once('open', () => {
+//   console.log('Connected mongodb server');
+// })
 
-mongoose.connect('mongodb://localhost/6_o_clock');
+// mongoose.connect('mongodb://localhost/6_o_clock');
 
 server.route({
   method: 'GET',
@@ -42,6 +42,16 @@ server.route({
     return h.response('exist session').code(200);
   }
 });
+
+server.route({
+  method: 'POST',
+  path: '/test',
+  handler: function(request, h) {
+    console.log(request);
+
+    return h.response('test').code(200);
+  }
+})
 
 server.route(user);
 
